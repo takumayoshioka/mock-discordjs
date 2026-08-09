@@ -1,0 +1,39 @@
+{
+  "name": "mock-discordjs",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "author": "Takuma Yoshioka",
+  "type": "module",
+  "main": "main.js",
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  },
+  "dependencies": {
+    "discord.js": "^14.27.0",
+    "dotenv": "^17.4.2",
+    "zod": "^4.4.3"
+  },
+  "imports": {
+    "#src/*": {
+      "types": "./src/*.ts",
+      "vitest": "./src/*.ts",
+      "default": "./dist/*.js"
+    },
+    "#test/*": {
+      "types": "./test/*.ts",
+      "vitest": "./test/*.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "compile": "tsc -p tsconfig.build.json",
+    "pretest": "npm run typecheck",
+    "test": "vitest run",
+    "predev": "npm run compile",
+    "dev": "node --env-file=.env.dev dist/echoBot.js"
+  }
+}

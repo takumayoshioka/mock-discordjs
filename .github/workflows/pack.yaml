@@ -28,10 +28,11 @@ jobs:
         shell: bash
         run: |
           set -eo pipefail
+          sudo apt-get update && sudo apt-get install -y jq
 
           test_dir="$(mktemp -d)"
-
-          tarball_name="$(npm pack)"
+          tarball_json="$(npm pack --json)"
+          tarball_name=$(echo "$tarball_json" | jq -r "to_entries[0].value.filename")
           mv "$tarball_name" "$test_dir"
 
           cp -r test "$test_dir/test"

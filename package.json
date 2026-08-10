@@ -36,6 +36,7 @@
     "clean": "rimraf dist",
     "typecheck": "tsc -p tsconfig.json",
     "compile": "tsc -p tsconfig.build.json",
+    "prepare": "npm run compile",
     "pretest": "npm run compile",
     "test": "vitest run"
   },

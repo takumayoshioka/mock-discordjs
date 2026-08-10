@@ -18,6 +18,9 @@
     "dotenv": "^17.4.2",
     "zod": "^4.4.3"
   },
+  "peerDependencies": {
+    "vitest": "^4.1.10"
+  },
   "imports": {
     "#src/*": {
       "types": "./src/*.ts",

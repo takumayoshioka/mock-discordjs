@@ -1,25 +1,8 @@
-import { beforeEach, expect, test, vi } from "vitest"
-import { Discord } from "#test/virtual/discord"
-import { Client } from "#test/virtual/client"
-import { Events } from "#test/virtual/events"
+import { testDiscord } from "@takumayoshioka/mock-discordjs"
+import { expect } from "vitest"
 
-let discord: Discord
-
-vi.mock("discord.js", () => {
-  return {
-    Client: Client,
-    Events: Events
-  }
-})
-
-// reset virtual discord
-beforeEach(() => {
-  discord = new Discord()
-  vi.resetModules()
-})
-
-test("echo bot single channel", async () => {
-  await import("#src/echoBot")
+testDiscord("echo bot single channel", async (discord) => {
+  await import("./echoBot.js")
 
   const random = discord.createTextChannel()
   const alice = discord.createUser("Alice", false)
@@ -39,7 +22,7 @@ test("echo bot single channel", async () => {
   expect(sentMessage).toEqual(["Alice: I'm human", "Bob: I'm human"])
 })
 
-test("echo bot single channel before login", async () => {
+testDiscord("echo bot single channel before login", async (discord) => {
   const random = discord.createTextChannel()
   const alice = discord.createUser("Alice", false)
   const bob = discord.createUser("Bob", false)
@@ -47,7 +30,7 @@ test("echo bot single channel before login", async () => {
 
   await discord.sendMessage(alice, "I'm human", random)
 
-  await import("#src/echoBot")
+  await import("./echoBot.js")
 
   await discord.sendMessage(bob, "I'm human", random)
   await discord.sendMessage(carol, "I'm human", random)
@@ -61,8 +44,8 @@ test("echo bot single channel before login", async () => {
   expect(sentMessage).toEqual(["Bob: I'm human"])
 })
 
-test("echo bot two channels before login", async () => {
-  await import("#src/echoBot")
+testDiscord("echo bot two channels before login", async (discord) => {
+  await import("./echoBot.js")
 
   const random = discord.createTextChannel()
   const general = discord.createTextChannel()
@@ -96,7 +79,7 @@ test("echo bot two channels before login", async () => {
     .toEqual(["Alice: I'm human", "Bob: I'm human", "Bob: Liar"])
 })
 
-test("echo bot two channels", async () => {
+testDiscord("echo bot two channels", async (discord) => {
 
   const random = discord.createTextChannel()
   const general = discord.createTextChannel()
@@ -108,7 +91,7 @@ test("echo bot two channels", async () => {
   await discord.sendMessage(bob, "I'm Bob", random)
   await discord.sendMessage(alice, "I'm human", general)
 
-  await import("#src/echoBot")
+  await import("./echoBot.js")
   await discord.sendMessage(carol, "I'm Carol", random)
   await discord.sendMessage(bob, "I'm human", general)
   await discord.sendMessage(carol, "I'm human", general)

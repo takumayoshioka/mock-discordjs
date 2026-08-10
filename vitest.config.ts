@@ -3,7 +3,7 @@ import { defineConfig } from "vitest/config"
 export default defineConfig({
   ssr: {
     resolve: {
-      conditions: ["vitest", "import", "default"],
+      conditions: ["mock-discordjs-src", "import", "default"],
     },
   },
   test: {

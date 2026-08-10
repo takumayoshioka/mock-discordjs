@@ -1,13 +1,14 @@
 {
-  "name": "mock-discordjs",
+  "name": "@takumayoshioka/mock-discordjs",
   "version": "0.0.1",
   "description": "",
   "license": "MIT",
   "author": "Takuma Yoshioka",
   "type": "module",
-  "main": "main.js",
+  "main": "index.js",
   "devDependencies": {
     "@types/node": "^26.2.0",
+    "rimraf": "^6.1.3",
     "ts-node": "^10.9.2",
     "typescript": "^7.0.2",
     "vitest": "^4.1.10"
@@ -20,20 +21,30 @@
   "imports": {
     "#src/*": {
       "types": "./src/*.ts",
-      "vitest": "./src/*.ts",
+      "mock-discordjs-src": "./src/*.ts",
       "default": "./dist/*.js"
     },
     "#test/*": {
       "types": "./test/*.ts",
-      "vitest": "./test/*.ts"
+      "mock-discordjs-src": "./test/*.ts"
     }
   },
   "scripts": {
+    "clean": "rimraf dist",
     "typecheck": "tsc -p tsconfig.json",
     "compile": "tsc -p tsconfig.build.json",
-    "pretest": "npm run typecheck",
+    "pretest": "npm run compile",
     "test": "vitest run",
     "predev": "npm run compile",
     "dev": "node --env-file=.env.dev dist/echoBot.js"
-  }
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
 }

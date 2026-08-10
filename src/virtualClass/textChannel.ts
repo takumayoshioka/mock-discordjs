@@ -1,5 +1,5 @@
-import { Message } from "#test/virtual/message"
-import { Runtime } from "#test/virtual/runtime"
+import { Message } from "#src/virtualClass/message"
+import { Runtime } from "#src/runtime"
 
 export class TextChannel {
   constructor(

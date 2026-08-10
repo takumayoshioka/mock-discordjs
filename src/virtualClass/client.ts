@@ -1,5 +1,5 @@
-import { User } from "#test/virtual/user"
-import { getRuntime } from "#test/virtual/runtime"
+import { User } from "#src/virtualClass/user"
+import { getRuntime } from "#src/runtime"
 
 type VirtualListener = (...args: unknown[]) => unknown
 type VirtualListenerEntry = {

@@ -1,4 +1,4 @@
-import { env } from "#src/env"
+import { env } from "./env.js"
 import {
   // GatewayIntentBits, 
   Client,

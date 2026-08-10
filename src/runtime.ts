@@ -1,8 +1,8 @@
-import { Events } from "#test/virtual/events"
-import { User } from "#test/virtual/user"
-import { Message } from "#test/virtual/message"
-import { Client } from "#test/virtual/client"
-import { TextChannel } from "#test/virtual/textChannel"
+import { Events } from "#src/virtualClass/events"
+import { User } from "#src/virtualClass/user"
+import { Message } from "#src/virtualClass/message"
+import { Client } from "#src/virtualClass/client"
+import { TextChannel } from "#src/virtualClass/textChannel"
 
 let runtime: Runtime | undefined
 

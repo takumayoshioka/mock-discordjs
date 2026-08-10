@@ -1,5 +1,5 @@
-import { User } from "#test/virtual/user"
-import { TextChannel } from "#test/virtual/textChannel"
+import { User } from "#src/virtualClass/user"
+import { TextChannel } from "#src/virtualClass/textChannel"
 
 export class Message {
   constructor(

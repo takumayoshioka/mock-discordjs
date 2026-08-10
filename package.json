@@ -34,9 +34,7 @@
     "typecheck": "tsc -p tsconfig.json",
     "compile": "tsc -p tsconfig.build.json",
     "pretest": "npm run compile",
-    "test": "vitest run",
-    "predev": "npm run compile",
-    "dev": "node --env-file=.env.dev dist/echoBot.js"
+    "test": "vitest run"
   },
   "exports": {
     ".": {

@@ -8,7 +8,6 @@ type VirtualListenerEntry = {
 
 export class Client {
   user: User | undefined
-  private readonly name = "bot name"
   private readonly listeners = new Map<string, VirtualListenerEntry[]>()
 
   constructor() {
@@ -26,7 +25,8 @@ export class Client {
   }
 
   login = async (token: string) => {
-    this.user = new User(getRuntime().createID(), this.name, true)
+    this.user =
+      getRuntime().createUser(getRuntime().getBotClientName(), true)
     await this.subscribe("clientReady", this)
 
     return `virtual: ${token}`

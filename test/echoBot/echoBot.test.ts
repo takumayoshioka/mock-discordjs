@@ -4,7 +4,7 @@ import { expect } from "vitest"
 testDiscord("echo bot single channel", async (discord) => {
   await import("./echoBot.js")
 
-  const random = discord.createTextChannel()
+  const random = discord.createTextChannel("random")
   const alice = discord.createUser("Alice", false)
   const bob = discord.createUser("Bob", false)
   const carol = discord.createUser("Carol", true)
@@ -23,7 +23,7 @@ testDiscord("echo bot single channel", async (discord) => {
 })
 
 testDiscord("echo bot single channel before login", async (discord) => {
-  const random = discord.createTextChannel()
+  const random = discord.createTextChannel("random")
   const alice = discord.createUser("Alice", false)
   const bob = discord.createUser("Bob", false)
   const carol = discord.createUser("Carol", true)
@@ -47,8 +47,8 @@ testDiscord("echo bot single channel before login", async (discord) => {
 testDiscord("echo bot two channels before login", async (discord) => {
   await import("./echoBot.js")
 
-  const random = discord.createTextChannel()
-  const general = discord.createTextChannel()
+  const random = discord.createTextChannel("random")
+  const general = discord.createTextChannel("general")
   const alice = discord.createUser("Alice", false)
   const bob = discord.createUser("Bob", false)
   const carol = discord.createUser("Carol", true)
@@ -81,8 +81,8 @@ testDiscord("echo bot two channels before login", async (discord) => {
 
 testDiscord("echo bot two channels", async (discord) => {
 
-  const random = discord.createTextChannel()
-  const general = discord.createTextChannel()
+  const random = discord.createTextChannel("random")
+  const general = discord.createTextChannel("general")
   const alice = discord.createUser("Alice", false)
   const bob = discord.createUser("Bob", false)
   const carol = discord.createUser("Carol", true)

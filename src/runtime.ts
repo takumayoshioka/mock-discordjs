@@ -16,6 +16,9 @@ export const getRuntime = () => {
 
 export class Runtime {
   private botClient: Client | undefined = undefined
+  private botClientName = ""
+  private readonly usersByName = new Map<string, User>()
+  private readonly channelsByName = new Map<string, TextChannel>()
   private readonly usersByID = new Map<string, User>()
   private readonly channelsByID = new Map<string, TextChannel>()
   private readonly messageByChannel =
@@ -39,6 +42,14 @@ export class Runtime {
     }
   }
 
+  setBotClientName = (name: string) => {
+    this.botClientName = name
+  }
+
+  getBotClientName = () => {
+    return this.botClientName
+  }
+
   getBotClient = () => {
     if (this.botClient === undefined) {
       throw new Error("Bot client is not online")
@@ -51,13 +62,15 @@ export class Runtime {
     const id = this.createID()
     const user = new User(id, name, bot)
     this.usersByID.set(id, user)
+    this.usersByName.set(name, user)
     return user
   }
 
-  createTextChannel = () => {
+  createTextChannel = (name: string) => {
     const id = this.createID()
-    const channel = new TextChannel(id, this)
+    const channel = new TextChannel(id, name, this)
     this.channelsByID.set(id, channel)
+    this.channelsByName.set(name, channel)
     this.messageByChannel.set(id, new Map<string, Message>())
     return channel
   }
@@ -82,8 +95,16 @@ export class Runtime {
     await this.publish(Events.MessageCreate, message)
   }
 
+  getUserByName = (name: string) => {
+    return this.usersByName.get(name)
+  }
+
   getChannelByID = (id: string) => {
     return this.channelsByID.get(id)
+  }
+
+  getChannelByName = (name: string) => {
+    return this.channelsByName.get(name)
   }
 
   getMessagesByChannel = (channel: TextChannel) => {

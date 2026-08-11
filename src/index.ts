@@ -1,1 +1,1 @@
-export { testDiscord } from "#src/testDiscord"
+export { testDiscord, defineScenario, testScenario } from "#src/testDiscord"

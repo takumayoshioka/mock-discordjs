@@ -4,6 +4,7 @@ import { Runtime } from "#src/runtime"
 export class TextChannel {
   constructor(
     readonly id: string,
+    readonly name: string,
     private readonly runtime: Runtime
   ) {
   }
